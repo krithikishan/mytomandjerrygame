@@ -35,8 +35,13 @@ garden.addImage("garden",gardenImage);
 
 function draw() {
   background(0,0,0); 
+  
+  jerry.depth=tom.depth;
 
-if(jerry.x - tom.x < (tom.width - jerry.width)/2){
+if(tom.x - jerry.x < tom.width/2 - jerry.width/2
+  && jerry.x - tom.x < tom.width/2 - jerry.width/2){
+  
+  text(mouseX + ',' + mouseY,10,45);
   
   tom.addAnimation("collided",tom_collided);
     tom.changeAnimation("collided");
@@ -49,6 +54,10 @@ if(jerry.x - tom.x < (tom.width - jerry.width)/2){
   
   keyPressed();
   drawSprites();
+  
+  
+  
+  text("PRESS RIGHTKEY TO TEASE TOM",200,200);
 }
 
 function keyPressed(){
@@ -57,5 +66,7 @@ function keyPressed(){
         tom.velocityX=-5;
       tom.addAnimation("running",tom_running);
         tom.changeAnimation("running");
+      jerry.addAnimation("teasing",jerry_teasing);
+      jerry.changeAnimation("teasing");
     }
 }
